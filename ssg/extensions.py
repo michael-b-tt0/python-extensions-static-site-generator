@@ -19,4 +19,4 @@ def load_bundled():
 
 
 
-print(type(sys.path))
+
