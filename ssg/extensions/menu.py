@@ -7,10 +7,10 @@ def collect_files(source, site_parsers):
 
     valid = lambda p : p.isinstance(p, parsers.ResourceParser)
     for path in source.rglob("*"):
-        for parser in site_parsers:
-            if valid(parser):
-                if parser.valid_file_ext(path.suffix):
-                    files.append(path)
+        for parser in list(filter(valid, site_parsers)):
+            if parser.valid_file_ext(path.suffix):
+                
+                files.append(path)
 
 
 @hooks.register("generate_menu")
