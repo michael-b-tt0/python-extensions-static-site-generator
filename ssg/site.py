@@ -30,16 +30,15 @@ class Site:
     def build(self):
         extensions.load_bundled()
         hooks.event("collect_files", self.source, self.parsers)
-        hooks.event("start_build",self.source, self.parsers)
+        hooks.event("start_build")
         self.dest.mkdir(parents=True, exist_ok=True)
         for path in self.source.rglob("*"):
             if path.is_dir():
                 self.create_dir(path)
             elif path.is_file():
                 self.run_parser(path)
-        hooks.event("start_build",self.source, self.parsers)
-        hooks.event("written",self.source, self.parsers)
-        hooks.event("stats",self.source, self.parsers)
+        
+        hooks.event("stats")
 
     @staticmethod
     def error(message):
